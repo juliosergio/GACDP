@@ -25,8 +25,9 @@
 #|    step 4 from the previous list, because having appropriately     |
 #|    labeled the columns (variables) of the data set, greatly helps  |
 #|    to extract the information asked for in step 2. The names of    |
-#|    the variables, however, must suffer a further change in         |
-#|    task III, due to particular needs of the operation there.       |
+#|    the variables, however, will suffer a further change in         |
+#|    task III, just to have column names that comply with R variable |
+#|    standard names.                                                 |
 #| II. EXTRACTION OF THE MEASUREMENTS ON THE MEAN AND STANDARD        |
 #|    DEVIATION FOR EACH MEASUREMENT. This is step 2 from the         |
 #|    previous list.                                                  |
@@ -35,13 +36,13 @@
 #|    This is step 5 from the previous list, but, as noted before,    |
 #|    a further tranformation in the names of the variables (step 4   |
 #|    of the requirements list) is performed here in order to         |
-#|    adequately specify the summarization operation.                 |
+#|    adequately specify the colum names as standard R variable       |
+#|    names.                                                          |
 #+--------------------------------------------------------------------+
 
-# I will use two packages to help me 
+# I will use dplyr package to help me 
 # to configure the data
 library(dplyr)
-library(tidyr)
 
 #+====================================================================+
 #|                   I. BUILDING ONE DATA SET                         |
@@ -176,3 +177,14 @@ names(IntTbl) <- newNames
 finalTbl <- IntTbl %>% 
     group_by(activity, subject) %>%
     summarise_each(funs(mean))
+
+#=======================  END OF TASK III ============================
+
+#+====================================================================+
+#|                       REPORTING OF RESULT                          |
+#+--------------------------------------------------------------------+
+#|  Here the final table is written to a file.                        |
+#+====================================================================+
+
+write.table(finalTbl, "SummaryTable.txt", row.name=FALSE)
+
