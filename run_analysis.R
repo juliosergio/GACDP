@@ -21,16 +21,21 @@
 #| reasons, the project is divided into three main tasks, namely:     |
 #|                                                                    |
 #|                      ACTUAL TASKS LIST                             |
-#| I. BUILDING ONE DATA SET. This comprises steps 1, 3, and 4 from    |
-#|    the previous list, because having appropriately labeled the     |
-#|    columns (variables) of the data set, greatly helps to extract   |
-#|    the information asked for in step 2.                            |
+#| I. BUILDING ONE DATA SET. This comprises steps 1, 3, and,partially,|
+#|    step 4 from the previous list, because having appropriately     |
+#|    labeled the columns (variables) of the data set, greatly helps  |
+#|    to extract the information asked for in step 2. The names of    |
+#|    the variables, however, must suffer a further change in         |
+#|    task III, due to particular needs of the operation there.       |
 #| II. EXTRACTION OF THE MEASUREMENTS ON THE MEAN AND STANDARD        |
-#|     DEVIATION FOR EACH MEASUREMENT. This is step 2 from the        |
-#|     previous list.                                                 |
+#|    DEVIATION FOR EACH MEASUREMENT. This is step 2 from the         |
+#|    previous list.                                                  |
 #| III. CREATION OF A SECOND, INDEPENDENT TIDY DATA SET WITH THE      |
-#|     AVERAGE OF EACH VARIABLE FOR EACH ACTIVITY AND EACH SUBJECT.   |
-#|     This is step 5 from the previous list.                         |
+#|    AVERAGE OF EACH VARIABLE FOR EACH ACTIVITY AND EACH SUBJECT.    |
+#|    This is step 5 from the previous list, but, as noted before,    |
+#|    a further tranformation in the names of the variables (step 4   |
+#|    of the requirements list) is performed here in order to         |
+#|    adequately specify the summarization operation.                 |
 #+--------------------------------------------------------------------+
 
 # I will use two packages to help me 
@@ -157,3 +162,14 @@ IntTbl <-
 #|                                                                    |
 #+====================================================================+
 
+# Since the names of the columns are not appropriate for the 'summarize'
+# operation we need to change them, using regular expressions, as follows:
+newNames <-
+    gsub("-","_",             # Changes "-" to "_" (globally)
+         sub("\\(\\)", "",    # Changes "()" to "" 
+             names(IntTbl)))  # The column names
+# Let's set these names as the new ones:
+names(IntTbl) <- newNames
+
+gg <-
+    IntTbl %>% group_by(activity, subject)
