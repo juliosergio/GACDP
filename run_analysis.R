@@ -171,5 +171,8 @@ newNames <-
 # Let's set these names as the new ones:
 names(IntTbl) <- newNames
 
-gg <-
-    IntTbl %>% group_by(activity, subject)
+# Let's compute the average for each variable upon the whole
+# data set grouped by activity and subject
+finalTbl <- IntTbl %>% 
+    group_by(activity, subject) %>%
+    summarise_each(funs(mean))
