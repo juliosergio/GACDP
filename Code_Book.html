@@ -69,9 +69,48 @@ img {
 
 
 <p>This text describes each variable (column) of the resulting data set of the Getting and Cleaning Data Course Project. This data set is produced running the main program “run_analysis” from the R console:</p>
-<pre><code> source(&quot;run_analysis.R&quot;)</code></pre>
-<p>to get as a result the file “SummaryTable.txt”, which in turn can be reloaded into R, as follows:</p>
-<pre><code> SummaryTable &lt;- read.table(&quot;SummaryTable.txt&quot;, header=TRUE)</code></pre>
+<pre class="r"><code>source(&quot;run_analysis.R&quot;)</code></pre>
+<p>to get as a result the file “SummaryTable.txt”, which, in turn, can be reloaded into R, as follows:</p>
+<pre class="r"><code>SummaryTable &lt;- read.table(&quot;SummaryTable.txt&quot;, header=TRUE)</code></pre>
+<p>The variables are as follows:</p>
+<ol style="list-style-type: decimal">
+<li><strong>activity</strong>. The activities each person performed: WALKING, WALKING_UPSTAIRS,<br />WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING.<br /></li>
+<li><strong>subject</strong>. Person id: 1,2, …, 30.</li>
+<li><strong>tBodyAcc_mean_X, tBodyAcc_mean_Y, tBodyAcc_mean_Z</strong>. The three components<br />of the average of the mean of body acceleration signals in the time domain.</li>
+<li><strong>tBodyAcc_std_X, tBodyAcc_std_Y, tBodyAcc_std_Z</strong>. The three components of<br />the average of the standard deviation of body acceleration signals in the time<br />domain.</li>
+<li><strong>tGravityAcc_mean_X, tGravityAcc_mean_Y, tGravityAcc_mean_Z</strong>. The three<br />components of the average of the mean of gravity acceleration signals in the<br />time domain.</li>
+<li><strong>tGravityAcc_std_X, tGravityAcc_std_Y, tGravityAcc_std_Z</strong>. The three<br />components of the average of the standard deviation of gravity acceleration<br />signals in the time domain.</li>
+<li><strong>tBodyAccJerk_mean_X, tBodyAccJerk_mean_Y, tBodyAccJerk_mean_Z</strong>. The three<br />components of the average of the mean of body linear acceleration jerk signals<br />in the time domain.</li>
+<li><strong>tBodyAccJerk_std_X, tBodyAccJerk_std_Y, tBodyAccJerk_std_Z</strong>. The three<br />components of the average of the standard deviation of body linear acceleration<br />jerk signals in the time domain.</li>
+<li><strong>tBodyGyro_mean_X, tBodyGyro_mean_Y, tBodyGyro_mean_Z</strong>. The three<br />components of the average of the mean of body angular velocity signals<br />in the time domain.</li>
+<li><strong>tBodyGyro_std_X, tBodyGyro_std_Y, tBodyGyro_std_Z</strong>. The three<br />components of the average of the standard deviation of body angular velocity<br />signals in the time domain.</li>
+<li><strong>tBodyGyroJerk_mean_X, tBodyGyroJerk_mean_Y, tBodyGyroJerk_mean_Z</strong>. The three<br />components of the average of the mean of body angular velocity jerk signals<br />in the time domain.</li>
+<li><strong>tBodyGyroJerk_std_X, tBodyGyroJerk_std_Y, tBodyGyroJerk_std_Z</strong>. The three<br />components of the average of the standard deviation of body angular velocity<br />jerk signals in the time domain.</li>
+<li><strong>tBodyAccMag_mean</strong>. Average of the Euclidean norm of the mean of<br />body acceleration signals in the time domain.</li>
+<li><strong>tBodyAccMag_std</strong>. Average of the Euclidean norm of the standard<br />deviation of body acceleration signals in the time domain.</li>
+<li><strong>tGravityAccMag_mean</strong>. Average of the Euclidean norm of the mean of<br />gravity acceleration signals in the time domain.</li>
+<li><strong>tGravityAccMag_std</strong>. Average of the Euclidean norm of the standard<br />deviation of gravity acceleration signals in the time domain.</li>
+<li><strong>tBodyAccJerkMag_mean</strong>. Average of the Euclidean norm of the mean of<br />body linear acceleration jerk signals in the time domain.</li>
+<li><strong>tBodyAccJerkMag_std</strong>. Average of the Euclidean norm of the standard<br />deviation of body linear acceleration jerk signals in the time domain.</li>
+<li><strong>tBodyGyroMag_mean</strong>. Average of the Euclidean norm of the mean of body<br />angular velocity signals in the time domain.</li>
+<li><strong>tBodyGyroMag_std</strong>. Average of the Euclidean norm of the standard<br />deviation of body angular velocity signals in the time domain.</li>
+<li><strong>tBodyGyroJerkMag_mean</strong>. Average of the Euclidean norm of the mean of<br />body angular velocity jerk signals in the time domain.</li>
+<li><strong>tBodyGyroJerkMag_std</strong>. Average of the Euclidean norm of the standard<br />deviation of body angular velocity jerk signals in the time domain.</li>
+<li><strong>fBodyAcc_mean_X, fBodyAcc_mean_Y, fBodyAcc_mean_Z</strong>. The three components<br />of the average of the mean of body acceleration signals in the frequency domain.</li>
+<li><strong>fBodyAcc_std_X, fBodyAcc_std_Y, fBodyAcc_std_Z</strong>. The three components of<br />the average of the standard deviation of body acceleration signals in the frequency<br />domain.</li>
+<li><strong>fBodyAccJerk_mean_X, fBodyAccJerk_mean_Y, fBodyAccJerk_mean_Z</strong>. The three<br />components of the average of the mean of body linear acceleration jerk signals<br />in the frequency domain.</li>
+<li><strong>fBodyAccJerk_std_X, fBodyAccJerk_std_Y, fBodyAccJerk_std_Z</strong>. The three<br />components of the average of the standard deviation of body linear acceleration<br />jerk signals in the frequency domain.</li>
+<li><strong>fBodyGyro_mean_X, fBodyGyro_mean_Y, fBodyGyro_mean_Z</strong>. The three<br />components of the average of the mean of body angular velocity signals<br />in the frequency domain.</li>
+<li><strong>fBodyGyro_std_X, fBodyGyro_std_Y, fBodyGyro_std_Z</strong>. The three<br />components of the average of the standard deviation of body angular velocity<br />signals in the frequency domain.</li>
+<li><strong>fBodyAccMag_mean</strong>. Average of the Euclidean norm of the mean of<br />body acceleration signals in the frequency domain.</li>
+<li><strong>fBodyAccMag_std</strong>. Average of the Euclidean norm of the standard<br />deviation of body acceleration signals in the frequency domain.</li>
+<li><strong>fBodyAccJerkMag_mean</strong>. Average of the Euclidean norm of the mean of<br />body linear acceleration jerk signals in the frequency domain.</li>
+<li><strong>fBodyAccJerkMag_std</strong>. Average of the Euclidean norm of the standard<br />deviation of body linear acceleration jerk signals in the frequency domain.</li>
+<li><strong>fBodyGyroMag_mean</strong>. Average of the Euclidean norm of the mean of body<br />angular velocity signals in the frequency domain.</li>
+<li><strong>fBodyGyroMag_std</strong>. Average of the Euclidean norm of the standard<br />deviation of body angular velocity signals in the frequency domain.</li>
+<li><strong>fBodyGyroJerkMag_mean</strong>. Average of the Euclidean norm of the mean of<br />body angular velocity jerk signals in the frequency domain.</li>
+<li><strong>fBodyGyroJerkMag_std</strong>. Average of the Euclidean norm of the standard<br />deviation of body angular velocity jerk signals in the frequency domain.</li>
+</ol>
 
 
 </div>
