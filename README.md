@@ -5,7 +5,7 @@ date: "16/02/2015"
 output: html_document
 ---
 # INTRO
-## Getting the information
+## Getting and sorting out information
 At the beginning of the course we were provided with a compressed file named  
 "UCI HAR Dataset.zip". I'm working in Ubuntu/Linux, so I uncompressed the  
 zip file into my working directory, and then renamed the resuting directory  
@@ -18,8 +18,13 @@ mv "UCI HAR Dataset.zip" <another-location>
 The resulting structure of the files is shown in Fig. 1, as the blue colored  
 objects.
 
-### Fgure 1. Structure of the files
+**Figure 1.** Structure of the files (a conceptual map)
+
 ![Files Structure](FilesStructure.jpg)
+
+Also, in Fig. 1, I have defined the place for the new files resulting during  
+the development of this project. These are shown as the orange colored  
+objects.
 
 ## Understanding the structure of the data
 As can be observed in Fig. 1, there are two directories "train" and "test", that  
@@ -31,7 +36,8 @@ element, setName, as follows:
 <setName> ::= "train" | "test".
 ```
 
-### Figure 2. Structure of the data overview
+**Figure 2.** Structure of the data overview
+
 ![Data Structure](DataStructure.jpeg)
 
 # Requirements of the project
@@ -68,20 +74,3 @@ in the names of the variables (step 4 of the requirements list) is performed
 here in order to adequately specify the colum names as standard R variable  
 names.
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```r
-summary(cars)
-```
-
-You can also embed plots, for example:
-
-```r
-if (something) {
-    plot(cars)
-}
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
