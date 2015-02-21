@@ -27,7 +27,10 @@
 #|    to extract the information asked for in step 2. The names of    |
 #|    the variables, however, will suffer a further change in         |
 #|    task III, just to have column names that comply with R variable |
-#|    standard names.                                                 |
+#|    standard names. The step 3 of the requirements (using           |
+#|    descriptive activity names) could be done here or as separate   |
+#|    task. Since it is only substituting an index by a label, I      |
+#|    opted for doing it here.                                        |
 #| II. EXTRACTION OF THE MEASUREMENTS ON THE MEAN AND STANDARD        |
 #|    DEVIATION FOR EACH MEASUREMENT. This is step 2 from the         |
 #|    previous list.                                                  |
