@@ -59,14 +59,14 @@ library(dplyr)
 #--------------
 # The following information is the same for both tables:
 # activity labels:
-acts <- read.table("activity_labels.txt")
+acts <- read.table("data/activity_labels.txt")
 # from this table the descriptive activity names of the activities
 # stated in step 3 of the requirements list, will be taken. 
 #--------
 
 #---------------
 # Column headers (features):
-hh <- read.table("features.txt", stringsAsFactors = F)
+hh <- read.table("data/features.txt", stringsAsFactors = F)
 # from this table the descriptive variable names, stated in
 # step 4 of the requirements list will be taken.
 #--------
@@ -81,12 +81,12 @@ build_sub_table <- function (setName) {
     #   I assume two sets: "test" and "train". Their data are stored
     #   in directories with the same names, and the names of the files 
     #   containing the data are constructed with these names; for instance, the 
-    #   main data file is X_<setName>.txt, ie, X_test.txt or X_train.txt, for
-    #   each data set.
+    #   main data file is data/X_<setName>.txt, ie, data/X_test.txt or 
+    #   data/X_train.txt, for each data set.
     #---------------
     
     # the directory where the set files are:
-    dir <- paste0(setName, "/")
+    dir <- paste0("data/", setName, "/")
     
     # Let's read the main data file: 
     fname <- paste0("X_", setName, ".txt")
