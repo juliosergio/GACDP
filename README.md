@@ -5,6 +5,10 @@ date: "16/02/2015"
 output: html_document
 ---
 # INTRO
+This document describes the main ideas behind the creation of the main  
+program **run_analysis.R** which satisfies the requirements of the  
+Getting and Cleaning Data Course Project.
+
 ## Getting and sorting out information
 At the beginning of the course we were provided with a compressed file named  
 "UCI HAR Dataset.zip". I'm working in Ubuntu/Linux, so I uncompressed the  
