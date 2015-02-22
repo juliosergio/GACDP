@@ -164,7 +164,10 @@ train_tbl <- build_sub_table("train")
 To have both tables merged, is simply to put each as a row of a bigger table. Since I'm  
 using the "dplyr" package this is done as follows:
 ```r
-TotalTbl <- bind_rows(train_tbl, test_tbl)
+TotalTbl <- bind_rows(
+                train_tbl, 
+                test_tbl
+            )
 ```
 
 # II. EXTRACTION OF THE MEASUREMENTS ON THE MEAN AND STANDARD DEVIATION FOR EACH MEASUREMENT
@@ -197,11 +200,39 @@ then to "subject", and this is done with this additional code to the previous on
 
 # III. CREATION OF A SECOND, INDEPENDENT TIDY DATA SET WITH THE AVERAGE OF EACH VARIABLE FOR EACH ACTIVITY AND EACH SUBJECT
 
-something
+Prior to this task, I modified the column names so that they comply with standard R  
+variable names. This is more than a "lexical sugar", since it allows the use of  
+these new names to do more operations, for instance when using the "mutate" verb  
+(function) of the "dplyr" package.
+
+The change is simple: replacing the dash ("-"), with underline ("_"), and eliminating the  
+parentheses. This is done by using regular expressions as follows:
+```r
+newNames <-
+    gsub("-","_",             # Changes "-" to "_" (globally)
+         sub("\\(\\)", "",    # Changes "()" to "" 
+             names(IntTbl)))  # The column names
+# Let's set these names as the new ones:
+names(IntTbl) <- newNames
+```
+
+Using the "dplyr" package facilities, computing the average for each variable upon the whole  
+data set grouped by activity and then by subject, is done as follows:
+```r
+finalTbl <- IntTbl %>% 
+    group_by(activity, subject) %>%
+    summarise_each(funs(mean))
+```
+Here, the `summarise_each(funs(mean))` call applies the function "mean" to each of the  
+columns of a given table.
 
 # Project results
-The results of this project are given in the "SummaryTable.txt", that can be  
-reloaded into a R data frame as follows:
+The results of this project are given in the "SummaryTable.txt", which is produced with  
+the following code:
+```r
+write.table(finalTbl, "SummaryTable.txt", row.name=FALSE)
+```
+The table can be reloaded into a R data frame as follows:
 ```r
 SummaryTable <- read.table("SummaryTable.txt", header=TRUE)
 ```

@@ -137,8 +137,11 @@ mv &quot;UCI HAR Dataset.zip&quot; &lt;another-location&gt;</code></pre>
 <p>To produce each table is simply to call the function with de appropriate set name:</p>
 <pre class="r"><code>test_tbl &lt;- build_sub_table(&quot;test&quot;)
 train_tbl &lt;- build_sub_table(&quot;train&quot;)</code></pre>
-<p>To have both tables merged, is siply to put each as a row of a bigger table. Since I’m<br />using the “dplyr” package this is done as follows:</p>
-<pre class="r"><code>TotalTbl &lt;- bind_rows(train_tbl, test_tbl)</code></pre>
+<p>To have both tables merged, is simply to put each as a row of a bigger table. Since I’m<br />using the “dplyr” package this is done as follows:</p>
+<pre class="r"><code>TotalTbl &lt;- bind_rows(
+                train_tbl, 
+                test_tbl
+            )</code></pre>
 </div>
 <div id="ii.-extraction-of-the-measurements-on-the-mean-and-standard-deviation-for-each-measurement" class="section level1">
 <h1>II. EXTRACTION OF THE MEASUREMENTS ON THE MEAN AND STANDARD DEVIATION FOR EACH MEASUREMENT</h1>
@@ -159,11 +162,25 @@ train_tbl &lt;- build_sub_table(&quot;train&quot;)</code></pre>
 </div>
 <div id="iii.-creation-of-a-second-independent-tidy-data-set-with-the-average-of-each-variable-for-each-activity-and-each-subject" class="section level1">
 <h1>III. CREATION OF A SECOND, INDEPENDENT TIDY DATA SET WITH THE AVERAGE OF EACH VARIABLE FOR EACH ACTIVITY AND EACH SUBJECT</h1>
-<p>something</p>
+<p>Prior to this task, I modified the column names so that they comply with standard R<br />variable names. This is more than a “lexical sugar”, since it allows the use of<br />these new names to do more operations, for instance when using the “mutate” verb<br />(function) of the “dplyr” package.</p>
+<p>The change is simple: replacing the dash (“-”), with underline (“_“), and eliminating the<br />parentheses. This is done by using regular expressions as follows:</p>
+<pre class="r"><code>newNames &lt;-
+    gsub(&quot;-&quot;,&quot;_&quot;,             # Changes &quot;-&quot; to &quot;_&quot; (globally)
+         sub(&quot;\\(\\)&quot;, &quot;&quot;,    # Changes &quot;()&quot; to &quot;&quot; 
+             names(IntTbl)))  # The column names
+# Let's set these names as the new ones:
+names(IntTbl) &lt;- newNames</code></pre>
+<p>Using the “dplyr” package facilities, computing the average for each variable upon the whole<br />data set grouped by activity and then by subject, is done as follows:</p>
+<pre class="r"><code>finalTbl &lt;- IntTbl %&gt;% 
+    group_by(activity, subject) %&gt;%
+    summarise_each(funs(mean))</code></pre>
+<p>Here, the <code>summarise_each(funs(mean))</code> call applies the function “mean” to each of the<br />columns of a given table.</p>
 </div>
 <div id="project-results" class="section level1">
 <h1>Project results</h1>
-<p>The results of this project are given in the “SummaryTable.txt”, that can be<br />reloaded into a R data frame as follows:</p>
+<p>The results of this project are given in the “SummaryTable.txt”, which is produced with<br />the following code:</p>
+<pre class="r"><code>write.table(finalTbl, &quot;SummaryTable.txt&quot;, row.name=FALSE)</code></pre>
+<p>The table can be reloaded into a R data frame as follows:</p>
 <pre class="r"><code>SummaryTable &lt;- read.table(&quot;SummaryTable.txt&quot;, header=TRUE)</code></pre>
 <p>The columns of this table are described in the <strong>Code_Book.md</strong> document.</p>
 </div>
