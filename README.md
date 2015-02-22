@@ -35,6 +35,36 @@ element, setName, as follows:
 ```
 <setName> ::= "train" | "test".
 ```
+Since the structure of the information in each set is similar, I will deal with  
+each set, in one and the same way, with the &lt;setName&gt; as a parameter.  
+Thus, taking any of the two data sets, there are as many as five files,  
+that can be viewed as tables: two at the "data" directory level, and three  
+at the &lt;setName&gt; directory level (see Fig. 1), as follows:
+
+1. **activity_labels.txt**. At the "data" directory level. This can be viewed  
+as two column table: the first column is a sequence of integer numbers   
+starting with 1, and the second is the label of one of the six possible  
+activities, like: WALKING, STANDING, etc.
+2. **features.txt**. At the "data" directory level. This can be viewed  
+as two column table: the first column is a sequence of integer numbers   
+starting with 1, and the second is the identifier of one of the 561 measured  
+features.
+3. **subject_&lt;setName&gt;.txt**. At the &lt;setName&gt; directory level.  
+This is a single column table, with series of repeated integer numbers  
+(between 1 and 30). The number of rows of this table varies from data set  
+to data set, though it matches the number of rows of the X_&lt;setName&gt;.txt  
+and the y_&lt;setName&gt;.txt tables (see below). Each one of the numbers in  
+this table identifies one of the individuals subjected to the measurements.
+4. **y_&lt;setName&gt;.txt**. At the &lt;setName&gt; directory level.  
+This is a single column table, with repeated integer numbers (between 1  
+and 6). The number of rows of this table varies from data set  
+to data set, though it matches the number of rows of the X_&lt;setName&gt;.txt  
+and the subject_&lt;setName&gt;.txt tables. Each one of the numbers in  
+this table is an index to the activity_labels.txt table, and then identifies  
+one of the activities the subject is performing in a given moment.
+
+
+
 
 **Figure 2.** Structure of the data overview
 
