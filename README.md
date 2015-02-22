@@ -61,14 +61,34 @@ and 6). The number of rows of this table varies from data set
 to data set, though it matches the number of rows of the X_&lt;setName&gt;.txt  
 and the subject_&lt;setName&gt;.txt tables. Each one of the numbers in  
 this table is an index to the activity_labels.txt table, and then identifies  
-one of the activities the subject is performing in a given moment.
+one of the activities the subject is performing in a given observation.
+5. **X_&lt;setName&gt;.txt**. At the &lt;setName&gt; directory level.  
+This is a table, with 561 columns (Note the coincidence with the number  
+of rows of the features.txt table). The number of rows of this table  
+varies from data set to data set, though it matches the number of rows of  
+the y_&lt;setName&gt;.txt and the subject_&lt;setName&gt;.txt tables.  
+This is the main data table, and so, its entries, real numbers, represent  
+the "observed" measurements.
 
-
+According to the previous description, it can be concluded that the  
+structure of the data, for each data set, is similar to the one  
+depicted in Fig. 2.
 
 
 **Figure 2.** Structure of the data overview
 
 ![Data Structure](DataStructure.jpeg)
+
+From this figure it can be viewed that the columns of the **X_&lt;setName&gt;.txt**  
+table can be named according to the feature descriptions given in the **features.txt**  
+table. Furthermore, the data lacks two columns: one for the individuals which will be   
+taken from the **subject_&lt;setName&gt;.txt** table, and the other for the activities,   
+each one of them performed, which will be taken in combination from tables   
+**y_&lt;setName&gt;.txt** and **activity_labels.txt**.
+
+The previous description is the key to build one similar table for each data set.  
+Since, the columns of both tables agree, gluing them together in a single table  
+is easy.
 
 # Requirements of the project
 From the two data sets: "train" (for training), and "test", the main program  
@@ -104,3 +124,10 @@ in the names of the variables (step 4 of the requirements list) is performed
 here in order to adequately specify the colum names as standard R variable  
 names.
 
+# Project results
+The results of this project are given in the "SummaryTable.txt", that can be  
+reloaded into a R data frame as follows:
+```r
+SummaryTable <- read.table("SummaryTable.txt", header=TRUE)
+```
+The columns of this table are described in the **Code_Book.md** document.
