@@ -128,6 +128,44 @@ in the names of the variables (step 4 of the requirements list) is performed
 here in order to adequately specify the colum names as standard R variable  
 names.
 
+# I. BUILDING ONE DATA SET
+
+something
+
+# II. EXTRACTION OF THE MEASUREMENTS ON THE MEAN AND STANDARD DEVIATION FOR EACH MEASUREMENT
+
+Here, I interpreted this as "those measurements to which it is applied either of two  
+statistical functions: mean() or std()", which are clearly distinguished in the features  
+names, because they explicitly include the string "mean()" or the string "std()". It have  
+to be noted that the names of the columns coincide with the names of the features up to this  
+point. So, from the complete set only those columns containing "mean()" or "std()" must be   
+selected.
+
+Since, I'm using the "dplyr" package, I coded this in the following way:
+```r
+IntTbl <-
+    TotalTbl %>%
+    select(
+        subject,  # this two columns ought to be here
+        activity, #
+        # to include columns with "mean()"  or "std()" 
+        # I will use the 
+        # regular expression matching, as follows:
+        matches("(mean\\(\\))|(std\\(\\))")
+    ) %>% 
+```
+Additionally, the resulting table is ordered according first to "activity" and  
+then to "subject", and this is done with this additional code to the previous one:
+```r
+    arrange(activity, subject) # first activity and then subject
+```
+
+
+
+# III. CREATION OF A SECOND, INDEPENDENT TIDY DATA SET WITH THE AVERAGE OF EACH VARIABLE FOR EACH ACTIVITY AND EACH SUBJECT
+
+something
+
 # Project results
 The results of this project are given in the "SummaryTable.txt", that can be  
 reloaded into a R data frame as follows:

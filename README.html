@@ -121,6 +121,31 @@ mv &quot;UCI HAR Dataset.zip&quot; &lt;another-location&gt;</code></pre>
 <li><strong>III. CREATION OF A SECOND, INDEPENDENT TIDY DATA SET WITH THE<br />AVERAGE OF EACH VARIABLE FOR EACH ACTIVITY AND EACH SUBJECT.</strong><br />This is step 5 from the previous list, but, as noted before, a further tranformation<br />in the names of the variables (step 4 of the requirements list) is performed<br />here in order to adequately specify the colum names as standard R variable<br />names.</li>
 </ul>
 </div>
+<div id="i.-building-one-data-set" class="section level1">
+<h1>I. BUILDING ONE DATA SET</h1>
+<p>something</p>
+</div>
+<div id="ii.-extraction-of-the-measurements-on-the-mean-and-standard-deviation-for-each-measurement" class="section level1">
+<h1>II. EXTRACTION OF THE MEASUREMENTS ON THE MEAN AND STANDARD DEVIATION FOR EACH MEASUREMENT</h1>
+<p>Here, I interpreted this as “those measurements to which it is applied either of two<br />statistical functions: mean() or std()”, which are clearly distinguished in the features<br />names, because they explicitly include the string “mean()” or the string “std()”. It have<br />to be noted that the names of the columns coincide with the names of the features up to this<br />point. So, from the complete set only those columns containing “mean()” or “std()” must be<br />selected.</p>
+<p>Since, I’m using the “dplyr” package, I coded this in the following way:</p>
+<pre class="r"><code>IntTbl &lt;-
+    TotalTbl %&gt;%
+    select(
+        subject,  # this two columns ought to be here
+        activity, #
+        # to include columns with &quot;mean()&quot;  or &quot;std()&quot; 
+        # I will use the 
+        # regular expression matching, as follows:
+        matches(&quot;(mean\\(\\))|(std\\(\\))&quot;)
+    ) %&gt;% </code></pre>
+<p>Additionally, the resulting table is ordered according first to “activity” and<br />then to “subject”, and this is done with this additional code to the previous one:</p>
+<pre class="r"><code>    arrange(activity, subject) # first activity and then subject</code></pre>
+</div>
+<div id="iii.-creation-of-a-second-independent-tidy-data-set-with-the-average-of-each-variable-for-each-activity-and-each-subject" class="section level1">
+<h1>III. CREATION OF A SECOND, INDEPENDENT TIDY DATA SET WITH THE AVERAGE OF EACH VARIABLE FOR EACH ACTIVITY AND EACH SUBJECT</h1>
+<p>something</p>
+</div>
 <div id="project-results" class="section level1">
 <h1>Project results</h1>
 <p>The results of this project are given in the “SummaryTable.txt”, that can be<br />reloaded into a R data frame as follows:</p>
