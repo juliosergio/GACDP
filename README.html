@@ -123,7 +123,22 @@ mv &quot;UCI HAR Dataset.zip&quot; &lt;another-location&gt;</code></pre>
 </div>
 <div id="i.-building-one-data-set" class="section level1">
 <h1>I. BUILDING ONE DATA SET</h1>
-<p>something</p>
+<p>The strategy to build this set is to build two separate sets, one for each data set from the<br />given tables (files), according to the principles given in section Understanding the Structure<br />of the Data, above. The function “build_sub_table(setName)” is devoted to this purpose, and its<br />main directions are given in the following paragraphs.</p>
+<p>Once the appropriate directories are traversed to locate the information, the column names<br />are assigned to the X main table (see Fig. 2) as follows:</p>
+<pre class="r"><code>    names(Xf) &lt;- hh[[2]]</code></pre>
+<p>where, <code>Xf</code> is the table built from the <strong>X_&lt;setName&gt;.txt</strong> file, and <code>hh</code> is the<br />table built from the <strong>features.txt</strong> file.</p>
+<p>Then the columns for the individuals and activities are added to the table as follows:</p>
+<pre class="r"><code>    cbind(
+        subject=subj[[1]], 
+        activity=acts[[2]][yact[[1]]],
+        Xf
+    )</code></pre>
+<p>where <code>subj</code> is a table that comes from the <strong>subject_&lt;setName&gt;.txt</strong> file, <code>yact</code><br />is a table built from the <strong>y_&lt;setName&gt;.txt</strong> file, so containing activities indices,<br />and <code>acts</code> is a key-value table built from the <strong>activity_labels.txt</strong> file.</p>
+<p>To produce each table is simply to call the function with de appropriate set name:</p>
+<pre class="r"><code>test_tbl &lt;- build_sub_table(&quot;test&quot;)
+train_tbl &lt;- build_sub_table(&quot;train&quot;)</code></pre>
+<p>To have both tables merged, is siply to put each as a row of a bigger table. Since I’m<br />using the “dplyr” package this is done as follows:</p>
+<pre class="r"><code>TotalTbl &lt;- bind_rows(train_tbl, test_tbl)</code></pre>
 </div>
 <div id="ii.-extraction-of-the-measurements-on-the-mean-and-standard-deviation-for-each-measurement" class="section level1">
 <h1>II. EXTRACTION OF THE MEASUREMENTS ON THE MEAN AND STANDARD DEVIATION FOR EACH MEASUREMENT</h1>

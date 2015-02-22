@@ -130,7 +130,42 @@ names.
 
 # I. BUILDING ONE DATA SET
 
-something
+The strategy to build this set is to build two separate sets, one for each data set from the  
+given tables (files), according to the principles given in section Understanding the Structure  
+of the Data, above. The function "build_sub_table(setName)" is devoted to this purpose, and its  
+main directions are given in the following paragraphs.
+
+Once the appropriate directories are traversed to locate the information, the column names  
+are assigned to the X main table (see Fig. 2) as follows:
+```r
+    names(Xf) <- hh[[2]]
+```
+where, `Xf` is the table built from the **X_&lt;setName&gt;.txt** file, and `hh` is the  
+table built from the **features.txt** file. 
+
+Then the columns for the individuals and activities are added to the table as follows:
+```r
+    cbind(
+        subject=subj[[1]], 
+        activity=acts[[2]][yact[[1]]],
+        Xf
+    )
+```
+where `subj` is a table that comes from the **subject_&lt;setName&gt;.txt** file, `yact`  
+is a table built from the **y_&lt;setName&gt;.txt** file, so containing activities indices,  
+and `acts` is a key-value table built from the **activity_labels.txt** file.
+
+To produce each table is simply to call the function with de appropriate set name:
+```r
+test_tbl <- build_sub_table("test")
+train_tbl <- build_sub_table("train")
+```
+
+To have both tables merged, is simply to put each as a row of a bigger table. Since I'm  
+using the "dplyr" package this is done as follows:
+```r
+TotalTbl <- bind_rows(train_tbl, test_tbl)
+```
 
 # II. EXTRACTION OF THE MEASUREMENTS ON THE MEAN AND STANDARD DEVIATION FOR EACH MEASUREMENT
 
@@ -159,8 +194,6 @@ then to "subject", and this is done with this additional code to the previous on
 ```r
     arrange(activity, subject) # first activity and then subject
 ```
-
-
 
 # III. CREATION OF A SECOND, INDEPENDENT TIDY DATA SET WITH THE AVERAGE OF EACH VARIABLE FOR EACH ACTIVITY AND EACH SUBJECT
 
