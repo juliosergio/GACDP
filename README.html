@@ -174,7 +174,7 @@ names(IntTbl) &lt;- newNames</code></pre>
 <pre class="r"><code>finalTbl &lt;- IntTbl %&gt;% 
     group_by(activity, subject) %&gt;%
     summarise_each(funs(mean))</code></pre>
-<p>Here, the <code>summarise_each(funs(mean))</code> call applies the function “mean” to each of the<br />columns of a given table.</p>
+<p>Here, the <code>summarise_each(funs(mean))</code> call applies the function “mean” to each of the<br />columns of a given table. However, note here, that the mean function is applied<br />by the previously stated group: (activity, subject).</p>
 </div>
 <div id="project-results" class="section level1">
 <h1>Project results</h1>
