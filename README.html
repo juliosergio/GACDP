@@ -157,6 +157,7 @@ train_tbl &lt;- build_sub_table(&quot;train&quot;)</code></pre>
         # regular expression matching, as follows:
         matches(&quot;(mean\\(\\))|(std\\(\\))&quot;)
     ) %&gt;% </code></pre>
+<p>Take note that the right regular expression to do the task is <code>&quot;(mean\\(\\))|(std\\(\\))&quot;</code>,<br />and not <code>&quot;(mean())|(std())&quot;</code>, because using the latter, picks expressions that doesn’t<br />contain the parentheses. Remember that bare parenthesis are metacharacters, and then, for<br />instance, the meaning of the “mean()” is “mean” followed by nothing.</p>
 <p>Additionally, the resulting table is ordered according first to “activity” and<br />then to “subject”, and this is done with this additional code to the previous one:</p>
 <pre class="r"><code>    arrange(activity, subject) # first activity and then subject</code></pre>
 </div>

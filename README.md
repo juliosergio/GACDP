@@ -192,6 +192,12 @@ IntTbl <-
         matches("(mean\\(\\))|(std\\(\\))")
     ) %>% 
 ```
+Take note that the right regular expression to do the task is `"(mean\\(\\))|(std\\(\\))"`,  
+and not `"(mean())|(std())"`, because using the latter, picks expressions that doesn't   
+contain the parentheses. Remember that bare parenthesis are metacharacters, and then, for   
+instance, the meaning of the "mean()" is "mean" followed by nothing.
+
+
 Additionally, the resulting table is ordered according first to "activity" and  
 then to "subject", and this is done with this additional code to the previous one:
 ```r
