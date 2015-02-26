@@ -230,7 +230,8 @@ finalTbl <- IntTbl %>%
     summarise_each(funs(mean))
 ```
 Here, the `summarise_each(funs(mean))` call applies the function "mean" to each of the  
-columns of a given table.
+columns of a given table. However, note here, that the mean function is applied  
+by the previously stated group: (activity, subject).
 
 # Project results
 The results of this project are given in the "SummaryTable.txt", which is produced with  
